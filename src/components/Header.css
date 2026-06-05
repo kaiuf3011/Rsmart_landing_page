@@ -1,0 +1,325 @@
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  padding: 12px 20px 0;
+  transition: padding 0.4s ease;
+}
+
+.header-scrolled {
+  padding: 8px 20px 0;
+}
+
+.navbar-pill {
+  position: relative;
+  z-index: 1000;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 75%;
+  max-width: var(--container-max);
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 8px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  /* Removed overflow: hidden so mobile sidebar isn't clipped */
+}
+
+.header-scrolled .navbar-pill {
+  background: rgba(15, 23, 42, 0.9);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* --- LEFT: Logo Box --- */
+.logo-box {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  padding: 8px 20px;
+  text-decoration: none;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.rsmart-logo-img {
+  height: 65px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* --- CENTER: Navigation (Desktop Inline) --- */
+.nav-center {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 8px 4px;
+  transition: all 0.25s ease;
+  position: relative;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #cbd5e1;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #cbd5e1;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-close-btn {
+  display: none;
+}
+
+/* --- RIGHT: Icons and Admissions CTA --- */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-right: 16px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  color: var(--primary-light);
+}
+
+.circle-btn {
+  background: var(--white);
+  color: var(--text-dark);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.circle-btn:hover {
+  background: var(--light);
+  color: var(--primary);
+}
+
+.btn-admissions {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 20px 6px 6px;
+  border: none;
+  border-radius: 40px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--primary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.btn-admissions:hover {
+  background: var(--primary-dark);
+}
+
+.plus-circle {
+  background: rgba(255, 255, 255, 0.2);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 992px) {
+  .menu-toggle-btn {
+    display: none !important;
+  }
+
+  .mobile-only-menu {
+    display: none !important;
+  }
+}
+
+/* --- Mobile Overlay --- */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 998;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .navbar-pill {
+    width: 95%;
+  }
+
+  .nav-list {
+    gap: 12px;
+  }
+
+  .nav-link {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 991px) {
+  .hide-mobile {
+    display: none !important;
+  }
+
+  /* SIDEBAR NAVIGATION */
+  .nav-center {
+    position: fixed;
+    top: -20px;
+    right: -320px;
+    width: 320px;
+    height: calc(100vh + 20px);
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 80px 32px 32px;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+  }
+
+  .nav-mobile-open {
+    right: 0;
+  }
+
+  .nav-close-btn {
+    display: flex;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: #334155;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+
+  .nav-close-btn:hover {
+    background: #f1f5f9;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .nav-link {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0f172a;
+    padding: 16px 20px;
+    border-radius: 12px;
+    display: block;
+    white-space: normal;
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+  .nav-link:hover {
+    background: rgba(15, 23, 42, 0.05);
+    color: #4f46e5;
+    transform: translateX(4px);
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar-pill {
+    width: 100%;
+  }
+
+  .main-header {
+    padding: 8px 10px 0;
+  }
+
+  .logo-box {
+    padding: 8px 12px;
+  }
+
+  .rsmart-logo-img {
+    height: 48px;
+  }
+
+  .btn-admissions {
+    font-size: 12px;
+    padding: 4px 12px 4px 4px;
+    gap: 8px;
+  }
+
+  .plus-circle {
+    width: 24px;
+    height: 24px;
+  }
+
+  .circle-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .nav-right {
+    gap: 10px;
+    padding-right: 12px;
+  }
+}

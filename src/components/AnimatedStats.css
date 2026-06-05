@@ -1,0 +1,115 @@
+.transformative-section {
+  background: var(--secondary); /* Dark slate background */
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.transformative-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.transformative-text {
+  flex: 1;
+  max-width: 500px;
+}
+
+.transformative-text h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  line-height: 0.95;
+  color: var(--white);
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.transformative-stats-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 600px;
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 32px 24px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-4px);
+}
+
+.stat-box-light {
+  background: var(--light);
+  border-color: var(--white);
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 4vw, 4rem);
+  color: var(--white); /* White for dark boxes */
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-box-light .stat-number {
+  color: var(--primary); /* Keep dark/primary color for light boxes */
+}
+
+.stat-text {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+}
+
+.stat-box-light .stat-text {
+  color: var(--text-dark);
+}
+
+@media (max-width: 991px) {
+  .transformative-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .transformative-text {
+    max-width: 100%;
+  }
+  .transformative-stats-grid {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .transformative-section {
+    padding: 60px 0;
+  }
+  
+  .transformative-text h2 {
+    font-size: clamp(2.2rem, 8vw, 3rem);
+    margin-bottom: 24px;
+  }
+  
+  .stat-number {
+    font-size: clamp(2.5rem, 8vw, 3rem);
+  }
+
+  .transformative-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

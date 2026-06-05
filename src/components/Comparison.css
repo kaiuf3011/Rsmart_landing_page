@@ -1,0 +1,260 @@
+.why-section {
+  background: #f8fafc;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 30px !important;
+}
+
+.wh-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Table Wrapper for Horizontal Scroll on Mobile */
+.cmp-table-wrapper {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 10px 4px 30px;
+}
+
+/* Grid Layout */
+.cmp-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr 1fr;
+  position: relative;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+/* Flatten the row DOM nodes so children align to the parent grid */
+.cmp-row {
+  display: contents;
+}
+
+/* ================================================================
+   Aspect Column (Left)
+   ================================================================ */
+.cmp-aspect-cell {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e293b;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.cmp-aspect-cell--empty {
+  border-bottom: 2px solid #cbd5e1;
+  background: #f1f5f9;
+}
+
+.cmp-aspect-bullet {
+  width: 6px;
+  height: 6px;
+  background: #000000;
+  border-radius: 50%;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+/* ================================================================
+   Raise Smart Advantage Column (Center)
+   ================================================================ */
+.cmp-rsmart-cell {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #ffffff;
+  color: #000000;
+  padding: 16px 24px;
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  line-height: 1.6;
+  border-bottom: 1px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+}
+
+/* Header styling */
+.cmp-rsmart-cell--header {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px 24px 18px;
+  background: #f1f5f9;
+  border-bottom: 2px solid #cbd5e1;
+}
+
+/* Last Row styling */
+.cmp-row:last-child > div {
+  border-bottom: none;
+}
+
+/* Card Tags and Titles */
+.cmp-card-tag {
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 6px;
+}
+
+.cmp-rsmart-cell .cmp-card-tag {
+  color: #64748b;
+}
+
+.cmp-normal-cell .cmp-card-tag {
+  color: #64748b;
+}
+
+.cmp-card-title {
+  font-family: var(--font-sans);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  margin: 0;
+  color: #0f172a;
+}
+
+/* Icon Wrapper */
+.cmp-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.cmp-icon-wrapper--check {
+  background: #e2e8f0;
+  color: #000000;
+}
+
+.cmp-icon-wrapper--x {
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+
+.cmp-text {
+  font-weight: 500;
+}
+
+/* ================================================================
+   Traditional Education Column (Right)
+   ================================================================ */
+.cmp-normal-cell {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #fafafa;
+  color: #64748b;
+  padding: 16px 24px;
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  line-height: 1.6;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Header styling */
+.cmp-normal-cell--header {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px 24px 18px;
+  background: #f1f5f9;
+  border-bottom: 2px solid #cbd5e1;
+}
+
+.cmp-normal-cell .cmp-text {
+  font-weight: 400;
+}
+
+/* ================================================================
+   RESPONSIVE SCROLL
+   ================================================================ */
+@media (max-width: 900px) {
+  .cmp-table-wrapper {
+    padding: 10px 20px 30px;
+  }
+
+  .cmp-grid {
+    grid-template-columns: 1fr;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    gap: 24px;
+  }
+  
+  .cmp-row {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+
+  .cmp-row--header {
+    display: none; /* Hide main headers, we use pseudo elements inside rows instead */
+  }
+
+  .cmp-aspect-cell {
+    border-right: none;
+    border-bottom: 2px solid #e2e8f0;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .cmp-aspect-bullet {
+    display: none;
+  }
+
+  .cmp-rsmart-cell {
+    border-right: none;
+    position: relative;
+    padding-top: 40px;
+  }
+
+  .cmp-rsmart-cell::before {
+    content: 'Raise Smart Advantage';
+    position: absolute;
+    top: 14px;
+    left: 24px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #4f46e5;
+  }
+
+  .cmp-normal-cell {
+    position: relative;
+    padding-top: 40px;
+    border-bottom: none;
+  }
+
+  .cmp-normal-cell::before {
+    content: 'Traditional Education';
+    position: absolute;
+    top: 14px;
+    left: 24px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #64748b;
+  }
+}

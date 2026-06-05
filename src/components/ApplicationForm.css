@@ -1,0 +1,243 @@
+.app-form-container {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 32px;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-sans);
+  color: #1E293B;
+}
+
+.app-form-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #0F172A;
+  font-family: var(--font-sans); /* Use sans-serif for the form title */
+  text-transform: none;
+}
+
+.app-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+  background-color: #F8FAFC;
+  /* Very light blue-gray */
+  font-size: 14px;
+  color: #334155;
+  outline: none;
+  transition: all 0.2s ease;
+  font-family: var(--font-sans);
+}
+
+.form-input:focus,
+.form-select:focus {
+  border-color: #CBD5E1;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.05);
+}
+
+.form-input::placeholder {
+  color: #94A3B8;
+}
+
+/* Select specific styling */
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.form-select:invalid {
+  color: #94A3B8;
+}
+
+/* Mobile Wrapper (used inside grid columns) */
+.mobile-input-wrapper {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.country-code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #334155;
+  font-weight: 500;
+}
+
+/* OTP Row */
+.otp-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+}
+
+.btn-get-otp {
+  background-color: #0F172A;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 0 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-get-otp:hover {
+  background-color: #1E293B;
+}
+
+/* Captcha Row */
+.captcha-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+}
+
+.captcha-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #E2E8F0;
+  padding: 8px 16px;
+  border-radius: 8px;
+  min-width: 140px;
+  justify-content: space-between;
+}
+
+.captcha-text {
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #334155;
+  font-style: italic;
+}
+
+.btn-refresh-captcha {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.btn-refresh-captcha:hover {
+  color: #0F172A;
+}
+
+/* Checkbox Row */
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.checkbox-row input[type="checkbox"] {
+  margin-top: 4px;
+  accent-color: #0F172A;
+  width: 16px;
+  height: 16px;
+}
+
+.checkbox-row label {
+  font-size: 12px;
+  color: #64748B;
+  line-height: 1.4;
+}
+
+/* Submit Button */
+.btn-submit-form {
+  background-color: #0F172A;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s;
+}
+
+.btn-submit-form:hover:not(:disabled) {
+  background-color: #1E293B;
+  transform: translateY(-1px);
+}
+
+.btn-submit-form:disabled {
+  background-color: #94A3B8;
+  cursor: not-allowed;
+}
+
+/* Footer Link */
+.form-footer {
+  text-align: center;
+  font-size: 14px;
+  color: #334155;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.login-link {
+  color: #4F46E5;
+  /* Indigo */
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .app-form-container {
+    padding: 24px 20px;
+  }
+
+  .two-col,
+  .captcha-row {
+    grid-template-columns: 1fr;
+  }
+
+  .captcha-box {
+    justify-content: center;
+  }
+}

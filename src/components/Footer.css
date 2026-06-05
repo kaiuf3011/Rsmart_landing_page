@@ -1,0 +1,121 @@
+.main-footer {
+  background: #0F172A; /* Dark slate background */
+  color: var(--white);
+  padding: 80px 0 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ft-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  margin-bottom: 60px;
+}
+
+.ft-brand { flex: 1; max-width: 380px; }
+
+.ft-logo {
+  height: 55px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 24px;
+  display: block;
+  /* Use filter if the logo needs to be brightened or inverted for dark mode */
+}
+
+.ft-mission {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 24px;
+}
+
+.ft-social { display: flex; gap: 12px; }
+
+.ft-social a {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ft-social a:hover {
+  background: var(--white);
+  color: var(--black);
+  border-color: var(--white);
+  transform: translateY(-2px);
+}
+
+.ft-links {
+  display: flex; gap: 60px;
+  flex: 2; justify-content: flex-end;
+}
+
+.ft-col h3 {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  color: var(--white);
+}
+
+.ft-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ft-col ul li { margin-bottom: 12px; }
+
+.ft-col ul li a {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.ft-col ul li a:hover { 
+  color: var(--primary); 
+  padding-left: 6px; 
+}
+
+.ft-contact li {
+  display: flex; gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-sans);
+}
+
+.ft-contact svg { flex-shrink: 0; color: var(--primary); margin-top: 2px; }
+
+.ft-bottom {
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.ft-legal { display: flex; gap: 20px; }
+.ft-legal a { color: rgba(255, 255, 255, 0.5); text-decoration: none; transition: color 0.3s ease; }
+.ft-legal a:hover { color: var(--white); }
+
+@media (max-width: 991px) {
+  .ft-top { flex-direction: column; gap: 40px; }
+  .ft-links { justify-content: flex-start; flex-wrap: wrap; gap: 40px; }
+  .ft-brand { max-width: 100%; }
+}
+@media (max-width: 600px) { 
+  .ft-bottom { flex-direction: column; gap: 16px; text-align: center; } 
+  .ft-links { flex-direction: column; gap: 30px; }
+}
