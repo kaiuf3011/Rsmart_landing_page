@@ -30,7 +30,7 @@ const InnovationImpact: React.FC = () => {
             </div>
             <div className="innovation-image">
               <div className="image-wrapper">
-                <img src="/image.png" alt="Students collaborating" />
+                <img src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?q=80&w=800&auto=format&fit=crop" alt="Students collaborating in corporate environment" />
               </div>
             </div>
           </div>

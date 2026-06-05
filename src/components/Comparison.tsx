@@ -20,28 +20,6 @@ const Comparison: React.FC = () => {
 
   useGSAP(() => {
     gsap.fromTo('.wh-header', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' } });
-    
-    // Header row entrance
-    gsap.fromTo('.cmp-row--header > div', 
-      { opacity: 0, y: 20 }, 
-      { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out", scrollTrigger: { trigger: '.cmp-grid', start: 'top 85%' } }
-    );
-
-    // Scrub-based horizontal reveal for data rows
-    gsap.utils.toArray('.cmp-row:not(.cmp-row--header)').forEach((row: any) => {
-      gsap.fromTo(row.children, 
-        { opacity: 0, x: -20 }, 
-        { 
-          opacity: 1, x: 0, stagger: 0.1,
-          scrollTrigger: {
-            trigger: row,
-            start: 'top 95%',
-            end: 'top 60%',
-            scrub: 1
-          }
-        }
-      );
-    });
   }, { scope: sectionRef });
 
   return (

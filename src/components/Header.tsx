@@ -6,7 +6,7 @@ import { useGSAP } from '@gsap/react';
 import StaggeredMenu from './StaggeredMenu';
 import './Header.css';
 
-const Header: React.FC = () => {
+const Header: React.FC<{ navigateTo: (page: string) => void }> = ({ navigateTo }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
@@ -18,7 +18,17 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: string) => {
+    e.preventDefault();
+    const targetId = link.replace('#', '');
+    navigateTo('home');
+    setTimeout(() => {
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 150);
+  };
 
   const handleMobileMenuToggle = () => {
     if (staggeredMenuRef.current) {
@@ -49,22 +59,30 @@ const Header: React.FC = () => {
   return (
     <header className={`main-header ${isScrolled ? 'header-scrolled' : ''}`} ref={headerRef}>
       <div className="navbar-pill">
-        <a href="/" className="nav-left logo-box">
+        <a 
+          href="/" 
+          className="nav-left logo-box" 
+          onClick={(e) => { 
+            e.preventDefault(); 
+            navigateTo('home'); 
+            window.scrollTo({ top: 0, behavior: 'smooth' }); 
+          }}
+        >
           <img src="/rsmart-logo-transparent.png" alt="Raise Smart School of Technology Logo" className="rsmart-logo-img" />
         </a>
 
         <nav className="nav-center hide-mobile">
           <ul className="nav-list">
-            <li><a href="#programs" className="nav-link">Academics</a></li>
-            <li><a href="#s4s" className="nav-link">S4S Community</a></li>
-            <li><a href="#placements" className="nav-link">Placements</a></li>
-            <li><a href="#rstnat" className="nav-link">RSTNAT</a></li>
-            <li><a href="#contact" className="nav-link">Contact</a></li>
+            <li><a href="#programs" className="nav-link" onClick={(e) => handleNavClick(e, '#programs')}>Academics</a></li>
+            <li><a href="#s4s" className="nav-link" onClick={(e) => handleNavClick(e, '#s4s')}>S4S Community</a></li>
+            <li><a href="#placements" className="nav-link" onClick={(e) => handleNavClick(e, '#placements')}>Placements</a></li>
+            <li><a href="#rstnat" className="nav-link" onClick={(e) => handleNavClick(e, '#rstnat')}>RSTNAT</a></li>
+            <li><a href="#contact" className="nav-link" onClick={(e) => handleNavClick(e, '#contact')}>Contact</a></li>
           </ul>
         </nav>
 
         <div className="nav-right">
-          <a href="#admissions" className="btn-admissions hide-mobile">
+          <a href="#admissions" className="btn-admissions hide-mobile" onClick={(e) => handleNavClick(e, '#admissions')}>
             <span className="plus-circle"><Plus size={16} strokeWidth={3} /></span>
             Apply Now
           </a>

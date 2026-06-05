@@ -233,10 +233,9 @@
 
 .s4s-wing-img {
   width: 100%;
-  max-height: 280px;
-  object-fit: contain;
+  height: 280px;
+  object-fit: cover;
   order: 0;
-  background: rgba(0, 0, 0, 0.03);
 }
 
 .s4s-wing h3 {
@@ -293,62 +292,156 @@
   gap: 24px;
 }
 
-.s4s-platform {
-  display: flex;
-  gap: 20px;
-  background: var(--bg-surface);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  padding: 28px;
-  transition: var(--transition);
-  backdrop-filter: blur(16px);
-}
-
-.s4s-platform:hover {
-  background: var(--bg-surface-light);
-  border-color: var(--primary);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-}
-
-.s4s-platform-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.1));
-  flex-shrink: 0;
-  overflow: hidden;
-  padding: 12px;
-}
-
-.s4s-platform-icon img {
-  width: 100%;
+.s4s-gradient-card-wrapper {
   height: 100%;
-  object-fit: contain;
+  display: flex;
 }
 
-.s4s-platform-content h3 {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--text-main);
-  margin-bottom: 6px;
+.s4s-gradient-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: 36px 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+  transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.platform-sub {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--primary);
-  display: block;
-  margin-top: 2px;
+.s4s-gradient-card-wrapper:hover .s4s-gradient-card {
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+  border-color: rgba(15, 23, 42, 0.1);
 }
 
-.s4s-platform-content p {
-  font-size: 13.5px;
-  color: var(--text-medium);
+/* Gradients — website-matched palette */
+.s4s-gradient-card.gradient-purple {
+  background: linear-gradient(135deg, #faf5ff 0%, #ede9fe 60%, #ddd6fe 100%);
+}
+.s4s-gradient-card.gradient-light-purple {
+  background: linear-gradient(135deg, #f5f3ff 0%, #e9d5ff 60%, #d8b4fe 100%);
+}
+.s4s-gradient-card.gradient-dark {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #334155 100%);
+}
+.s4s-gradient-card.gradient-slate {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 60%, #020617 100%);
+}
+
+
+
+/* Card Content */
+.s4s-gradient-card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Badge */
+.s4s-gradient-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #475569;
+  width: fit-content;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.s4s-gradient-card-dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Text Group */
+.s4s-gradient-card-text-group {
+  flex-grow: 1;
+}
+
+/* Title */
+.s4s-gradient-card-title {
+  font-family: var(--font-sans);
+  font-size: 26px;
+  font-weight: 850;
+  color: #0f172a;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.5px;
+}
+
+/* Title on dark cards */
+.s4s-gradient-card.gradient-dark .s4s-gradient-card-title,
+.s4s-gradient-card.gradient-slate .s4s-gradient-card-title {
+  color: #ffffff;
+}
+
+/* Description */
+.s4s-gradient-card-desc {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: #475569;
   line-height: 1.6;
+  max-width: 90%;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Description on dark cards */
+.s4s-gradient-card.gradient-dark .s4s-gradient-card-desc,
+.s4s-gradient-card.gradient-slate .s4s-gradient-card-desc {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Badge on dark cards */
+.s4s-gradient-card.gradient-dark .s4s-gradient-card-badge,
+.s4s-gradient-card.gradient-slate .s4s-gradient-card-badge {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Call to Action */
+.s4s-gradient-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  font-size: 13.5px;
+  font-weight: 750;
+  color: #0f172a;
+  text-decoration: none;
+  width: fit-content;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.s4s-gradient-card-cta:hover {
+  color: var(--primary);
+}
+
+.s4s-gradient-card-arrow {
+  transition: transform 0.3s ease;
+}
+
+.s4s-gradient-card-cta:hover .s4s-gradient-card-arrow {
+  transform: translateX(4px);
 }
 
 @media (max-width: 991px) {
