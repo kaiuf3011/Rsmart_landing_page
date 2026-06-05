@@ -1,13 +1,16 @@
 import React, { useRef } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { motion } from 'framer-motion';
 import { Building2, Code, Globe, Cpu, Award, Briefcase, MapPin, Users, Monitor } from 'lucide-react';
 import './WhyRaiseSmart.css';
 
-gsap.registerPlugin(ScrollTrigger);
+interface BenefitData {
+  icon: React.ReactNode;
+  title: string;
+  subtitle: string;
+  bullets: string[];
+}
 
-const benefits = [
+const benefits: BenefitData[] = [
   {
     icon: <Building2 size={20} />,
     title: 'IT Park Ecosystem',
@@ -16,8 +19,7 @@ const benefits = [
       'Learning integrated with industry',
       'On-campus IT Park for direct ecosystem access',
       'Work alongside real startups and innovators'
-    ],
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop'
+    ]
   },
   {
     icon: <Code size={20} />,
@@ -27,8 +29,7 @@ const benefits = [
       'Project-driven learning from semester one',
       'Develop real applications and software systems',
       'Build a strong professional portfolio early'
-    ],
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop'
+    ]
   },
   {
     icon: <Globe size={20} />,
@@ -38,8 +39,7 @@ const benefits = [
       'Mentorship from tech leaders and entrepreneurs',
       'Engage in masterclasses and tech workshops',
       'Gain insights into global tech standards'
-    ],
-    image: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=1200&auto=format&fit=crop'
+    ]
   },
   {
     icon: <Cpu size={20} />,
@@ -49,8 +49,7 @@ const benefits = [
       'Curriculum focused on AI, ML, and Web3',
       'Learn modern software engineering and cloud',
       'Stay ahead with market-demanded skill modules'
-    ],
-    image: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=1200&auto=format&fit=crop'
+    ]
   },
   {
     icon: <Award size={20} />,
@@ -60,8 +59,7 @@ const benefits = [
       'Gain specialized technical certifications',
       'Master Cloud, AI, and Cybersecurity',
       'Boost your career profile every semester'
-    ],
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop'
+    ]
   },
   {
     icon: <Briefcase size={20} />,
@@ -71,8 +69,7 @@ const benefits = [
       'Bridge academic theory with corporate operations',
       'Solve live challenges and industry case studies',
       'Transition smoothly into professional workflows'
-    ],
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop'
+    ]
   },
   {
     icon: <MapPin size={20} />,
@@ -82,8 +79,7 @@ const benefits = [
       'Visits to tech hubs and data centers',
       'Observe real engineering and infrastructure',
       'Connect theories to real-world digital systems'
-    ],
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200&auto=format&fit=crop'
+    ]
   },
   {
     icon: <Users size={20} />,
@@ -93,8 +89,7 @@ const benefits = [
       'Build problem-solving and strategic skills',
       'Outbound camps and team-based exercises',
       'Foster trust, soft skills, and character'
-    ],
-    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop'
+    ]
   },
   {
     icon: <Monitor size={20} />,
@@ -104,44 +99,66 @@ const benefits = [
       'Equipped with high-performance MacBooks',
       'Pre-loaded with essential developer tools',
       'Native speed for complex builds and AI'
-    ],
-    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop'
+    ]
   }
 ];
+
+export const BenefitsColumn = (props: {
+  className?: string;
+  benefits: BenefitData[];
+  duration?: number;
+}) => {
+  return (
+    <div className={props.className}>
+      <motion.div
+        animate={{
+          translateY: "-50%",
+        }}
+        transition={{
+          duration: props.duration || 10,
+          repeat: Infinity,
+          ease: "linear",
+          repeatType: "loop",
+        }}
+        className="wrs-column-inner"
+      >
+        {[
+          ...new Array(2).fill(0).map((_, index) => (
+            <React.Fragment key={index}>
+              {props.benefits.map((b, i) => (
+                <div className="wrs-grid-card" key={i}>
+                  <div className="wrs-grid-content">
+                    <div className="wrs-grid-header-row">
+                      <div className="wrs-grid-icon-badge">{b.icon}</div>
+                      <h3 className="wrs-grid-title">{b.title}</h3>
+                    </div>
+                    <p className="wrs-grid-subtitle">{b.subtitle}</p>
+                    
+                    <ul className="wrs-grid-bullets">
+                      {b.bullets.map((bullet, bidx) => (
+                        <li key={bidx} className="wrs-grid-bullet-item">
+                          <span className="wrs-bullet-dot"></span>
+                          <span className="wrs-grid-bullet-text">{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </React.Fragment>
+          )),
+        ]}
+      </motion.div>
+    </div>
+  );
+};
 
 const WhyRaiseSmart: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => { return;
-    let mm = gsap.matchMedia();
-
-    mm.add("(min-width: 769px)", () => {
-      gsap.fromTo('.wrs-header',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' } }
-      );
-      
-      ScrollTrigger.batch(".wrs-grid-card", {
-        interval: 0.1,
-        batchMax: 3,
-        onEnter: batch => gsap.fromTo(batch, {opacity: 0, y: 40}, {opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power3.out", overwrite: true}),
-        start: "top 85%"
-      });
-    });
-
-    mm.add("(max-width: 768px)", () => {
-      gsap.fromTo('.wrs-header',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' } }
-      );
-      
-      gsap.utils.toArray('.wrs-grid-card').forEach((card: any) => {
-        gsap.fromTo(card, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", scrollTrigger: { trigger: card, start: 'top 90%' } });
-      });
-    });
-
-    return () => mm.revert();
-  }, { scope: sectionRef });
+  const col1 = [benefits[0], benefits[3], benefits[6]];
+  const col2 = [benefits[1], benefits[4], benefits[7]];
+  const col3 = [benefits[2], benefits[5], benefits[8]];
 
   return (
     <section className="wrs-section section-padding" id="why-raise-smart" ref={sectionRef}>
@@ -156,28 +173,11 @@ const WhyRaiseSmart: React.FC = () => {
           </div>
         </div>
 
-        {/* Grid Container */}
+        {/* Scrolling Grid Container */}
         <div className="wrs-grid-container">
-          {benefits.map((b, idx) => (
-            <div key={idx} className="wrs-grid-card">
-              <div className="wrs-grid-content">
-                <div className="wrs-grid-header-row">
-                  <div className="wrs-grid-icon-badge">{b.icon}</div>
-                  <h3 className="wrs-grid-title">{b.title}</h3>
-                </div>
-                <p className="wrs-grid-subtitle">{b.subtitle}</p>
-                
-                <ul className="wrs-grid-bullets">
-                  {b.bullets.map((bullet, bidx) => (
-                    <li key={bidx} className="wrs-grid-bullet-item">
-                      <span className="wrs-bullet-dot"></span>
-                      <span className="wrs-grid-bullet-text">{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
+          <BenefitsColumn benefits={col1} duration={28} className="wrs-col" />
+          <BenefitsColumn benefits={col2} duration={20} className="wrs-col" />
+          <BenefitsColumn benefits={col3} duration={32} className="wrs-col" />
         </div>
       </div>
     </section>

@@ -38,12 +38,56 @@
   border-radius: 2px;
 }
 
-/* --- Grid Container --- */
+/* --- Scrolling Grid Container --- */
 .wrs-grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  height: 650px;
+  overflow: hidden;
+  position: relative;
   width: 100%;
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+}
+
+/* Fallback gradient overlays matching background (#f8fafc) */
+.wrs-grid-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, #f8fafc 20%, rgba(248, 250, 252, 0));
+  z-index: 10;
+  pointer-events: none;
+}
+
+.wrs-grid-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to top, #f8fafc 20%, rgba(248, 250, 252, 0));
+  z-index: 10;
+  pointer-events: none;
+}
+
+.wrs-col {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.wrs-column-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 24px;
 }
 
 .wrs-grid-card {
@@ -55,6 +99,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .wrs-grid-card:hover {

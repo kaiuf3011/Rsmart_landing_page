@@ -227,7 +227,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ item, onSelect }) => (
 /* ─────────────────────────────────────────
    MAIN COMPONENT
 ───────────────────────────────────────── */
-const ExploreRGU: React.FC = () => {
+const ExploreRGU: React.FC<{ navigateTo: (page: string) => void }> = ({ navigateTo }) => {
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState<ExploreItem[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -364,7 +364,7 @@ const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
     setShowDropdown(false);
     setQuery('');
     setTimeout(() => {
-      window.location.href = item.link;
+      navigateTo(item.id);
       setTransitioning(false);
     }, 500);
   };

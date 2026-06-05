@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Code, MessageSquare, Users, Target, Globe } from 'lucide-react';
+import { motion } from 'framer-motion';
 import './S4S.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -23,6 +24,46 @@ const benefits = [
   { icon: <Code size={18} />, text: 'Technical excellence' },
   { icon: <MessageSquare size={18} />, text: 'Collaborative growth' },
 ];
+
+const platformsData = [
+  {
+    id: 'aited',
+    title: 'AITED',
+    badgeText: 'AI Tools Exploration & Development',
+    badgeColor: '#a855f7',
+    gradient: 'purple',
+    description: 'Students explore Artificial Intelligence tools and emerging technologies, experiment with modern platforms, and stay updated with technological trends.',
+  },
+  {
+    id: 'pro-power-talks',
+    title: 'Pro Power Talks',
+    badgeText: 'Industry Interaction (Biweekly Sessions)',
+    badgeColor: '#0f172a',
+    gradient: 'dark',
+    description: 'Industry professionals interact directly with students, sharing real-world insights, career guidance, and exposure to current market demands.',
+  },
+  {
+    id: 'peer-power-hive',
+    title: 'Peer Power Hive',
+    badgeText: 'Interest-Based Innovation Teams',
+    badgeColor: '#a855f7',
+    gradient: 'light-purple',
+    description: 'Students form teams based on common interests such as Game Design, Game Development, Web Development, and Mobile App Development. They engage in focused evening sessions, exploring the latest tools under faculty mentorship.',
+  },
+  {
+    id: 'peer-power-talks',
+    title: 'Peer Power Talks',
+    badgeText: 'Students Empowering Students',
+    badgeColor: '#0f172a',
+    gradient: 'slate',
+    description: 'Students share their knowledge, competition experiences, and new learnings with peers, strengthening communication and collaborative learning.',
+  }
+];
+
+const cardAnimation = {
+  rest: { scale: 1, y: 0 },
+  hover: { scale: 1.03, y: -4 },
+};
 
 const S4S: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -132,7 +173,7 @@ const S4S: React.FC = () => {
                 <li>AI-driven problem solving</li>
               </ul>
             </div>
-            <img src="/ai_skills_laboratory.png" alt="AITED Wing" className="s4s-wing-img" style={{ objectFit: 'contain', padding: '40px', backgroundColor: '#f8fafc' }} loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop" alt="AITED Wing" className="s4s-wing-img" loading="lazy" />
           </div>
         </div>
 
@@ -141,42 +182,36 @@ const S4S: React.FC = () => {
         </div>
 
         <div className="s4s-platforms">
-          <div className="s4s-platform">
-            <div className="s4s-platform-icon">
-              <img src="https://rsmart2.rankuhigher.com/wp-content/uploads/2026/03/ai.png" alt="AITED" />
-            </div>
-            <div className="s4s-platform-content">
-              <h3>AITED <span className="platform-sub">— AI Tools Exploration & Development</span></h3>
-              <p>Students explore Artificial Intelligence tools and emerging technologies, experiment with modern platforms, and stay updated with technological trends.</p>
-            </div>
-          </div>
-          <div className="s4s-platform">
-            <div className="s4s-platform-icon">
-              <img src="https://rsmart2.rankuhigher.com/wp-content/uploads/2026/03/conversation.png" alt="Pro Power Talks" />
-            </div>
-            <div className="s4s-platform-content">
-              <h3>Pro Power Talks <span className="platform-sub">— Industry Interaction (Biweekly Sessions)</span></h3>
-              <p>Industry professionals interact directly with students, sharing real-world insights, career guidance, and exposure to current market demands.</p>
-            </div>
-          </div>
-          <div className="s4s-platform">
-            <div className="s4s-platform-icon">
-              <img src="https://rsmart2.rankuhigher.com/wp-content/uploads/2026/03/solution.png" alt="Peer Power Hive" />
-            </div>
-            <div className="s4s-platform-content">
-              <h3>Peer Power Hive <span className="platform-sub">— Interest-Based Innovation Teams</span></h3>
-              <p>Students form teams based on common interests such as Game Design, Game Development, Web Development, and Mobile App Development. They engage in focused evening sessions, exploring the latest tools under faculty mentorship.</p>
-            </div>
-          </div>
-          <div className="s4s-platform">
-            <div className="s4s-platform-icon">
-              <img src="https://rsmart2.rankuhigher.com/wp-content/uploads/2026/03/classroom.png" alt="Peer Power Talks" />
-            </div>
-            <div className="s4s-platform-content">
-              <h3>Peer Power Talks <span className="platform-sub">— Students Empowering Students</span></h3>
-              <p>Students share their knowledge, competition experiences, and new learnings with peers, strengthening communication and collaborative learning.</p>
-            </div>
-          </div>
+          {platformsData.map((platform) => (
+            <motion.div
+              key={platform.id}
+              variants={cardAnimation}
+              initial="rest"
+              whileHover="hover"
+              animate="rest"
+              className="s4s-gradient-card-wrapper"
+            >
+              <div className={`s4s-gradient-card gradient-${platform.gradient}`}>
+                {/* Card Content */}
+                <div className="s4s-gradient-card-content">
+                  {/* Badge */}
+                  <div className="s4s-gradient-card-badge">
+                    <span 
+                      className="s4s-gradient-card-dot" 
+                      style={{ backgroundColor: platform.badgeColor }}
+                    />
+                    {platform.badgeText}
+                  </div>
+
+                  {/* Title and Description */}
+                  <div className="s4s-gradient-card-text-group">
+                    <h3 className="s4s-gradient-card-title">{platform.title}</h3>
+                    <p className="s4s-gradient-card-desc">{platform.description}</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
